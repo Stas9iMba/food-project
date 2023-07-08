@@ -1,16 +1,17 @@
-import { defer } from "react-router-dom";
 import { API_URL } from "./config";
 
 async function getMealById(mealId) {
   const res = await fetch(`${API_URL}lookup.php?i=${mealId}`);
-
+  return res.json();
+}
+async function getAllCategories() {
+  const res = await fetch(`${API_URL}categories.php`);
   return res.json();
 }
 
-const mealLoader = async ({ request, params }) => {
-  const mealId = params.mealId;
+async function getFilteredCategories(catName) {
+  const res = await fetch(`${API_URL}filter.php?c=${catName}`);
+  return res.json();
+}
 
-  return defer({ mealId: await getMealById(mealId) });
-};
-
-export { mealLoader };
+export { getMealById, getAllCategories, getFilteredCategories };
