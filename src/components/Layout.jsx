@@ -1,16 +1,14 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 function Layout() {
   return (
     <div>
-      <header>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/posts">Blog</NavLink>
-        <NavLink to="/about">About</NavLink>
-      </header>
-      <main className="container">
+      <Header />
+      <main className="container content">
         <Outlet />
       </main>
-      <footer className="container">2023</footer>
+      <Footer />
     </div>
   );
 }
