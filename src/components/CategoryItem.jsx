@@ -11,7 +11,7 @@ function CategoryItem({ id, title, description, urlImage }) {
       </div>
       <div className="card-action">
         <Link to={`/category/${title}`} className="btn">
-          Watch Recipe
+          Watch category
         </Link>
       </div>
     </div>

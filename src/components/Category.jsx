@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { Preloader } from "./Preloader";
@@ -13,7 +13,12 @@ function Category() {
   }, [name]);
 
   return (
-    <div>{!meals.length ? <Preloader /> : <MealList meals={meals} />}</div>
+    <>
+      <Link to="/" className="btn">
+        go back
+      </Link>
+      <div>{!meals.length ? <Preloader /> : <MealList meals={meals} />}</div>
+    </>
   );
 }
 

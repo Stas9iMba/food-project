@@ -1,6 +1,5 @@
 import { Meal } from "./Meal";
 function MealList({ meals = [] }) {
-  console.log(meals);
   return (
     <div className="list">
       {meals.map((meal) => (

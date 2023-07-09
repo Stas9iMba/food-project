@@ -11,6 +11,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+img {
+  max-width: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+iframe {
+  max-width: 100%;
+  width: 500px;
+  height: 350px;
+}
+
 nav {
   padding: 0 1rem;
 }
@@ -22,6 +34,12 @@ nav {
 
 .card-action span {
   font-size: 1.8rem;
+}
+
+.recipe{
+  display: flex;
+  flex-direction: column;
+  padding-top: 21px;
 }
 
 .cart {
