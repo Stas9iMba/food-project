@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-function Search({ cb = Function.prototype }) {
-  const [value, setValue] = useState("");
+function Search({ cb = Function.prototype, searchQuery = "" }) {
+  const [value, setValue] = useState(searchQuery);
 
   const handleKey = (e) => {
     if (e.key === "Enter") {
-      handleSubmit();
+      handleSubmit(e);
     }
   };
 
@@ -13,8 +13,6 @@ function Search({ cb = Function.prototype }) {
     e.preventDefault();
     cb(value);
   };
-
-  useEffect(() => {});
 
   return (
     <div className="row">

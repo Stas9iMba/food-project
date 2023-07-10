@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { getAllCategories } from "../api";
 import { Preloader } from "../components/Preloader";
@@ -8,11 +9,16 @@ import { Search } from "../components/Search";
 function Home() {
   const [catalog, setCatalog] = useState([]);
   const [filteredCatalog, setFilteredCatalog] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchQuery = searchParams.get("search") || "";
 
   const handleSearch = (str) => {
+    const searchValue = str.toLowerCase();
+    setSearchParams({ search: searchValue });
     setFilteredCatalog(
       catalog.filter((item) =>
-        item.strCategory.toLowerCase().includes(str.toLowerCase())
+        item.strCategory.toLowerCase().includes(searchValue)
       )
     );
   };
@@ -22,13 +28,13 @@ function Home() {
       setCatalog(data.categories);
       setFilteredCatalog(data.categories);
     });
-  }, []);
+  }, [searchQuery]);
 
   return (
     <>
-      <Search cb={handleSearch} />
+      <Search cb={handleSearch} searchQuery={searchQuery} />
       {catalog.length ? (
-        <CategoryList catalog={filteredCatalog} />
+        <CategoryList catalog={filteredCatalog} searchQuery={searchQuery} />
       ) : (
         <Preloader />
       )}

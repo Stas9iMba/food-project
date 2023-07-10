@@ -1,18 +1,21 @@
 import { CategoryItem } from "./CategoryItem";
-function CategoryList({ catalog = [] }) {
+function CategoryList({ catalog = [], searchQuery }) {
+
   return (
     <div className="list">
-      {catalog.map((item) => {
-        return (
-          <CategoryItem
-            key={item.idCategory}
-            id={item.idCategory}
-            title={item.strCategory}
-            description={item.strCategoryDescription}
-            urlImage={item.strCategoryThumb}
-          />
-        );
-      })}
+      {catalog
+        .filter((item) => item.strCategory.toLowerCase().includes(searchQuery))
+        .map((item) => {
+          return (
+            <CategoryItem
+              key={item.idCategory}
+              id={item.idCategory}
+              title={item.strCategory}
+              description={item.strCategoryDescription}
+              urlImage={item.strCategoryThumb}
+            />
+          );
+        })}
     </div>
   );
 }
